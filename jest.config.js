@@ -20,4 +20,5 @@ module.exports = {
       },
     ],
   ],
+  coveragePathIgnorePatterns: ['/node_modules/', '/docs/'],
 };
