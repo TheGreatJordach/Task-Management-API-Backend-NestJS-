@@ -1,0 +1,33 @@
+name: Main Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and Deploy to Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: yarn install
+      - name: Build the project
+        run: yarn build
+      - name: Deploy to Vercel
+        run: yarn vercel --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+  database:
+    name: Apply Migrations on Neon PostgresSQL
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: yarn install
+      - name: Apply migrations
+        run: yarn typeorm migration:run
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
