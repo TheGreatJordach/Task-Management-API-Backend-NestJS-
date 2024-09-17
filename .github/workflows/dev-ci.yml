@@ -24,11 +24,13 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Run Jest tests with coverage
-        run: yarn test --coverage
+        run: yarn test:cov
       - name: Upload coverage to CodeCov
-        run: bash <(curl -s https://codecov.io/bash)
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+
 
   sonarcloud:
     name: SonarCloud Code Analysis
@@ -38,7 +40,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full depth is recommended for accurate SonarCloud analysis
+          fetch-depth: 0 # Full depth is recommended for accurate SonarCloud analysis
 
       - name: Install dependencies
         run: yarn install
@@ -46,7 +48,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   auto_merge:

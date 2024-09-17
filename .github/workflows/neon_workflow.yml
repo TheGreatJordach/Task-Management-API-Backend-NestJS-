@@ -1,6 +1,5 @@
 name: Neon and Vercel Deployment Workflow
 
-# Run workflow on pushes to dev and main branches
 on:
   push:
     branches:
@@ -21,13 +20,31 @@ jobs:
         id: branch_name
         uses: tj-actions/branch-names@v8
 
+  check_branch_exists:
+    name: Check if Neon Branch Exists
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Neon Branch
+        id: check_branch
+        run: |
+          BRANCH_NAME="dev-${{ needs.setup.outputs.branch }}"
+          # Check if the branch exists using the neonctl CLI or relevant API
+          if neonctl branch list --project-id ${{ vars.NEON_PROJECT_ID }} | grep -q $BRANCH_NAME; then
+            echo "Branch exists"
+            echo "branch_exists=true" >> $GITHUB_ENV
+          else
+            echo "Branch does not exist"
+            echo "branch_exists=false" >> $GITHUB_ENV
+          fi
+
   create_neon_branch:
     name: Create Neon Branch for Dev
     outputs:
       db_url: ${{ steps.create_neon_branch_encode.outputs.db_url }}
       db_url_with_pooler: ${{ steps.create_neon_branch_encode.outputs.db_url_with_pooler }}
-    needs: setup
-    if: github.ref == 'refs/heads/dev'  # Only create Neon branch on dev branch push
+    needs: [setup, check_branch_exists]
+    if: github.ref == 'refs/heads/dev' && env.branch_exists == 'false'
     runs-on: ubuntu-latest
     steps:
       - name: Create Neon Branch
@@ -46,20 +63,20 @@ jobs:
   merge_to_main:
     name: Auto-Merge Dev into Main
     needs: create_neon_branch
-    if: github.ref == 'refs/heads/dev' && success()  # Only if tests pass in dev
+    if: github.ref == 'refs/heads/dev' && success()
     runs-on: ubuntu-latest
     steps:
       - name: Auto-merge dev to main
         uses: pascalgn/automerge-action@v0.15.4
         with:
-          merge-method: squash  # You can also use "merge" or "rebase"
+          merge-method: squash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   delete_neon_branch:
     name: Delete Neon Branch for Main
     needs: setup
-    if: github.ref == 'refs/heads/main'  # Delete Neon dev branch on merge to main
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Delete Neon Branch
@@ -72,7 +89,7 @@ jobs:
   deploy_to_vercel:
     name: Deploy to Vercel
     needs: merge_to_main
-    if: github.ref == 'refs/heads/main' && success()  # Only deploy after merge to main
+    if: github.ref == 'refs/heads/main' && success()
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Vercel
@@ -81,4 +98,4 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./  # Adjust based on your project structure
+          working-directory: ./ # Adjust based on your project structure
