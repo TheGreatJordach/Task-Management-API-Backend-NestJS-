@@ -9,9 +9,9 @@ module.exports = {
   collectCoverageFrom: [
     "**/*.(t|j)s",
     "!src/**/*.d.ts", // Exclude type definition files
-    "!src/**/*.spec.ts", // Exclude test files if you want separate test coverage reporting
+    "!src/**/*.spec.ts", // Exclude test files from coverage
   ],
-  coverageDirectory: "../coverage",
+  coverageDirectory: "coverage", // Make sure this is correct
   testEnvironment: "node",
   coverageReporters: ["json", "lcov", "text", "clover"],
 
@@ -20,7 +20,7 @@ module.exports = {
     [
       "jest-junit",
       {
-        outputDirectory: "../coverage",
+        outputDirectory: "coverage", // Ensure this matches coverageDirectory if needed
         outputName: "junit.xml",
       },
     ],
