@@ -102,15 +102,29 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="modules/UsersModule.html" data-type="entity-link" >UsersModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                            'data-bs-target="#controllers-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' : 'data-bs-target="#xs-controllers-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' :
+                                            'id="xs-controllers-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' }>
+                                            <li class="link">
+                                                <a href="controllers/UsersWriteController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersWriteController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-UsersModule-8e162a1a7ca46179e24ac141cada5e3775700e73707aba26901213a69d727bf482c71ea3ba05ff5c0682c1902a3ec3ad66058dbf04de2a9481e2cb56871e6686"' : 'data-bs-target="#xs-injectables-links-module-UsersModule-8e162a1a7ca46179e24ac141cada5e3775700e73707aba26901213a69d727bf482c71ea3ba05ff5c0682c1902a3ec3ad66058dbf04de2a9481e2cb56871e6686"' }>
+                                        'data-bs-target="#injectables-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' : 'data-bs-target="#xs-injectables-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UsersModule-8e162a1a7ca46179e24ac141cada5e3775700e73707aba26901213a69d727bf482c71ea3ba05ff5c0682c1902a3ec3ad66058dbf04de2a9481e2cb56871e6686"' :
-                                        'id="xs-injectables-links-module-UsersModule-8e162a1a7ca46179e24ac141cada5e3775700e73707aba26901213a69d727bf482c71ea3ba05ff5c0682c1902a3ec3ad66058dbf04de2a9481e2cb56871e6686"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' :
+                                        'id="xs-injectables-links-module-UsersModule-e11f700f539ee21cc1ae43038b88984901a3349a1aa36e734f9dc5903e61845d39064935ffaf852ca97ba0229598a2040ffa4084d4497c5101428af497c45d72"' }>
                                         <li class="link">
                                             <a href="injectables/ReadOnlyUserService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ReadOnlyUserService</a>
                                         </li>

@@ -208,6 +208,16 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module controllers"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../controllers/UsersWriteController.html">UsersWriteController</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -219,9 +229,15 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { ReadOnlyUserService } from &#x27;./read/read-only.user.service&#x27;;
 import { WriteUserService } from &#x27;./write/write.user.service&#x27;;
+import { UsersWriteController } from &quot;./write/write.user.controller&quot;;
+import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
+import { User } from &quot;./entity/user-entity&quot;;
 
 @Module({
-  providers: [ReadOnlyUserService, WriteUserService]
+  imports: [TypeOrmModule.forFeature([User])],
+  providers: [ReadOnlyUserService, WriteUserService],
+  controllers:[UsersWriteController]
+
 })
 export class UsersModule {}
 </code></pre>

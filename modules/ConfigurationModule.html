@@ -129,9 +129,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
-import { ConfigModule,  } from &quot;@nestjs/config&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module, ValidationPipe } from &quot;@nestjs/common&quot;;
+import { ConfigModule } from &quot;@nestjs/config&quot;;
 import { CacheModule } from &quot;@nestjs/cache-manager&quot;;
+import { APP_PIPE } from &quot;@nestjs/core&quot;;
 
 
 @Module({
@@ -166,8 +167,18 @@ import { CacheModule } from &quot;@nestjs/cache-manager&quot;;
           max,
         }
       }
+    })],
+  providers: [{
+    provide: APP_PIPE,
+    useValue: new ValidationPipe({
+      whitelist:true,
+      transform:true,
+      forbidNonWhitelisted:true,
+      transformOptions:{
+        enableImplicitConversion:true
+      }
     })
-  ]
+  }],
 
 })
 export class ConfigurationModule {}
