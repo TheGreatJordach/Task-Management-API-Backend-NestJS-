@@ -15,7 +15,7 @@ import { CacheModule } from "@nestjs/cache-manager";
 
       useFactory: async () => {
         const ttl:number = parseInt(process.env.CACHE_TTL)|| 60 * 5
-        const max:number = parseInt(process.env.CACHE_MAX_TTL) || 10;
+        const max:number = parseInt(process.env.CACHE_MAX_TTL) || 100;
 
 
         //DEBUG
