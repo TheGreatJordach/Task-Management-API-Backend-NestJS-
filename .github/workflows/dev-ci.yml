@@ -16,6 +16,7 @@ jobs:
           echo "DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}"
           echo "DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}"
           echo "DATASOURCE_DATABASE=${{ secrets.DATASOURCE_DATABASE }}"
+          echo "DATABASE_URL"=${{ secrets.DATABASE_URL }}
           # Add more checks as needed
         env:
           DATASOURCE_HOST: ${{ secrets.DATASOURCE_HOST }}

@@ -15,14 +15,15 @@ export class EnvironmentVariables {
   DATASOURCE_DATABASE:string
   @IsNotEmptyString()
   DATASOURCE_HOST:string
+  @IsNotEmptyString()
+  DATABASE_URL:string
 
 // Number
   @IsPositiveInteger()
   APP_PORT:number
   @IsPositiveInteger()
   DATASOURCE_PORT:number
-  @IsPositiveInteger()
-  DATABASE_URL:number
+
 }
 
 

@@ -6,6 +6,7 @@ The **Task Management API** is a backend system built using [NestJS](https://nes
 
 [![codecov](https://codecov.io/gh/TheGreatJordach/Task-Management-API-Backend-NestJS-/branch/dev/graph/badge.svg?token=aixWyMJyId)](https://codecov.io/gh/TheGreatJordach/Task-Management-API-Backend-NestJS-)
 [![Dev CI Pipeline](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-ci.yml/badge.svg)](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-ci.yml)
+[![Neon and Vercel Deployment Workflow](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/neon_workflow.yml/badge.svg)](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/neon_workflow.yml)
 ## Features
 
 - **User Authentication**: Register, login, and manage user sessions using JWT-based authentication.
