@@ -1,11 +1,8 @@
 name: Main Deployment Pipeline
 
-on:
-  push:
-    branches:
-      - main
 
-  pull_request:
+on:
+ pull_request:
     branches:
       - main
     types: [closed]
