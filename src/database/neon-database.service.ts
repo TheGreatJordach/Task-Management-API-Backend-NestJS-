@@ -4,10 +4,10 @@ import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class NeonDatabaseService {
-  private readonly sql: any;
+  private readonly sql;
 
   constructor(private configService: ConfigService) {
-    const databaseUrl = this.configService.get('DATABASE_URL');
+    const databaseUrl = this.configService.get<string>('DATABASE_URL');
     this.sql = neon(databaseUrl);
   }
   async getData() {

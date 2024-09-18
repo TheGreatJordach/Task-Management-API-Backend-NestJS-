@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { TestDbConfig } from "../configuration/test-db.config";
 import { DatabaseModule } from "./database.module";
+import { NeonDatabaseService } from "./neon-database.service";
 
 
 describe("DatabaseModule", () => {
@@ -11,8 +12,12 @@ describe("DatabaseModule", () => {
     module = await Test.createTestingModule({
       imports: [
         TypeOrmModule.forRoot(TestDbConfig),
-        DatabaseModule,
+
       ],
+      providers:[{
+        provide: NeonDatabaseService,
+        useValue: {}
+      }]
     }).compile()
   })
   it("should be defined", () => {
