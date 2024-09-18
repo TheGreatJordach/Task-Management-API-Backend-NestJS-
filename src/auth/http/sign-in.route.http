@@ -1,0 +1,28 @@
+### Create USER
+### Return Token
+### Return message or Error
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
+
+
+### sign-in or login
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+"identifier": "42880",
+"email": "jordach.makaya@gmail.com",
+"password": "content"
+}
+
+
+### Signup
+### Release Token
+GET http://localhost:3000/api/auth/signout
+Accept: application/json
+
