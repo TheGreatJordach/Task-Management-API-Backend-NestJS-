@@ -124,10 +124,11 @@ jobs:
           git checkout main
           git pull origin main
 
-      - name: Authenticate GitHub CLI with PAT
+      - name: unset GITHUB_TOKEN and Authenticate GitHub CLI
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }} # Use your personal access token here
         run: |
+          unset GITHUB_TOKEN
           echo "${{ secrets.GH_PAT }}" | gh auth login --with-token
 
       - name: Create Pull Request
