@@ -94,7 +94,7 @@ jobs:
 
 
   auto_merge:
-    name: Auto-Merge Dev into Main if All Pass
+    name: Merge Request Dev to Main # if All Pass
     runs-on: ubuntu-latest
     needs: [lint, test, build]
     steps:
