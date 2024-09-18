@@ -78,7 +78,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Run Jest tests with coverage
-        run:  jest --ci --testResultsProcessor="jest-junit"     # Alternative : yarn test:cov
+        run:  yarn run test:cov"     # Alternative : yarn test:cov
       - name: Upload coverage to CodeCov
         if: ${{ !cancelled() }}
         # codecov/test-results-action@v1
@@ -107,6 +107,16 @@ jobs:
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.organization=thegreatjordach
+            -Dsonar.projectKey=TheGreatJordach_Task-Management-API-Backend-NestJS-
+            -Dsonar.sources=src/
+            -Dsonar.test.exclusions=**/*.spec.ts
+            -Dsonar.tests=src/
+            -Dsonar.verbose=true
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
