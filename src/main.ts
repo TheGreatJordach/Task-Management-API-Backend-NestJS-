@@ -1,5 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
+import { ConfigService } from "@nestjs/config";
 
 declare const module : any
 async function bootstrap() {
@@ -12,7 +13,8 @@ async function bootstrap() {
      );
    }
 
-
-  await app.listen(3000);
+  const configService = app.get(ConfigService)
+  const port = configService.get<number>('APP_PORT')
+  await app.listen(port);
 }
 bootstrap()

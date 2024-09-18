@@ -1,0 +1,61 @@
+name: Main Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-env:
+    name: Load and Validate Environment Variables
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check environment variables
+        run: |
+          echo "DATASOURCE_HOST=${{ secrets.DATASOURCE_HOST }}"
+          echo "DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}"
+          echo "DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}"
+          echo "DATASOURCE_DATABASE=${{ secrets.DATASOURCE_DATABASE }}"
+          echo "APP_PORT=${{ secrets.APP_PORT }}"
+          echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}"
+          # Add more checks as needed
+        env:
+          DATASOURCE_HOST: ${{ secrets.DATASOURCE_HOST }}
+          DATASOURCE_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
+          DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
+          DATASOURCE_DATABASE: ${{ secrets.DATASOURCE_DATABASE }}
+          APP_PORT: ${{ secrets.APP_PORT }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          # Add more environment variables here
+
+  deploy:
+    name: Build and Deploy to Vercel
+    runs-on: ubuntu-latest
+    needs: validate-env
+    if: success() # Ensure this job only runs if 'validate-env' is successful
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: yarn install
+      - name: Build the project
+        run: yarn build
+      - name: Deploy to Vercel
+        run: yarn vercel --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+  database:
+    name: Apply Migrations on Neon PostgresSQL
+    runs-on: ubuntu-latest
+    needs: validate-env
+    if: success() # Ensure this job only runs if 'validate-env' is successful
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: yarn install
+      - name: Apply migrations
+        run: yarn typeorm migration:run
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
