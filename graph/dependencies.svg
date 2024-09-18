@@ -32,13 +32,21 @@
 <title>cluster_AppModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-154 16,-206 146,-206 146,-154 16,-154"/>
 </g>
+<g id="clust19" class="cluster">
+<title>cluster_DatabaseModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-138 232,-138 232,-70 8,-70"/>
+</g>
+<g id="clust24" class="cluster">
+<title>cluster_DatabaseModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 224,-130 224,-78 16,-78"/>
+</g>
 <g id="clust25" class="cluster">
 <title>cluster_UsersModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="37,-70 37,-138 442,-138 442,-70 37,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="240,-70 240,-138 645,-138 645,-70 240,-70"/>
 </g>
 <g id="clust30" class="cluster">
 <title>cluster_UsersModule_providers</title>
-<polygon fill="none" stroke="black" points="45,-78 45,-130 434,-130 434,-78 45,-78"/>
+<polygon fill="none" stroke="black" points="248,-78 248,-130 637,-130 637,-78 248,-78"/>
 </g>
 <!-- AuthModule -->
 <g id="node1" class="node">
@@ -49,14 +57,14 @@
 <!-- AppModule -->
 <g id="node5" class="node">
 <title>AppModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="368.66,-263 365.66,-267 344.66,-267 341.66,-263 285.34,-263 285.34,-227 368.66,-227 368.66,-263"/>
-<text text-anchor="middle" x="327" y="-240.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="377.66,-263 374.66,-267 353.66,-267 350.66,-263 294.34,-263 294.34,-227 377.66,-227 377.66,-263"/>
+<text text-anchor="middle" x="336" y="-240.8" font-family="Times,serif" font-size="14.00">AppModule</text>
 </g>
 <!-- AuthModule&#45;&gt;AppModule -->
 <g id="edge1" class="edge">
 <title>AuthModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M600,-198.28C600,-219.32 600,-251 600,-251 600,-251 378.76,-251 378.76,-251"/>
-<polygon fill="black" stroke="black" points="378.76,-247.5 368.76,-251 378.76,-254.5 378.76,-247.5"/>
+<path fill="none" stroke="black" d="M600,-198.28C600,-219.32 600,-251 600,-251 600,-251 387.83,-251 387.83,-251"/>
+<polygon fill="black" stroke="black" points="387.83,-247.5 377.83,-251 387.83,-254.5 387.83,-247.5"/>
 </g>
 <!-- ConfigurationModule -->
 <g id="node2" class="node">
@@ -67,32 +75,32 @@
 <!-- ConfigurationModule&#45;&gt;AppModule -->
 <g id="edge2" class="edge">
 <title>ConfigurationModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M469,-198.02C469,-215.37 469,-239 469,-239 469,-239 378.84,-239 378.84,-239"/>
-<polygon fill="black" stroke="black" points="378.84,-235.5 368.84,-239 378.84,-242.5 378.84,-235.5"/>
+<path fill="none" stroke="black" d="M469,-198.02C469,-215.37 469,-239 469,-239 469,-239 387.72,-239 387.72,-239"/>
+<polygon fill="black" stroke="black" points="387.72,-235.5 377.72,-239 387.72,-242.5 387.72,-235.5"/>
 </g>
 <!-- DatabaseModule -->
 <g id="node3" class="node">
 <title>DatabaseModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="382.35,-198 379.35,-202 358.35,-202 355.35,-198 271.65,-198 271.65,-162 382.35,-162 382.35,-198"/>
-<text text-anchor="middle" x="327" y="-175.8" font-family="Times,serif" font-size="14.00">DatabaseModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="272.35,-198 269.35,-202 248.35,-202 245.35,-198 161.65,-198 161.65,-162 272.35,-162 272.35,-198"/>
+<text text-anchor="middle" x="217" y="-175.8" font-family="Times,serif" font-size="14.00">DatabaseModule</text>
 </g>
 <!-- DatabaseModule&#45;&gt;AppModule -->
 <g id="edge3" class="edge">
 <title>DatabaseModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M327,-198.11C327,-198.11 327,-216.99 327,-216.99"/>
-<polygon fill="black" stroke="black" points="323.5,-216.99 327,-226.99 330.5,-216.99 323.5,-216.99"/>
+<path fill="none" stroke="black" d="M217,-198.02C217,-215.37 217,-239 217,-239 217,-239 284.05,-239 284.05,-239"/>
+<polygon fill="black" stroke="black" points="284.05,-242.5 294.05,-239 284.05,-235.5 284.05,-242.5"/>
 </g>
 <!-- UsersModule -->
 <g id="node4" class="node">
 <title>UsersModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="253.92,-198 250.92,-202 229.92,-202 226.92,-198 162.08,-198 162.08,-162 253.92,-162 253.92,-198"/>
-<text text-anchor="middle" x="208" y="-175.8" font-family="Times,serif" font-size="14.00">UsersModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="381.92,-198 378.92,-202 357.92,-202 354.92,-198 290.08,-198 290.08,-162 381.92,-162 381.92,-198"/>
+<text text-anchor="middle" x="336" y="-175.8" font-family="Times,serif" font-size="14.00">UsersModule</text>
 </g>
 <!-- UsersModule&#45;&gt;AppModule -->
 <g id="edge4" class="edge">
 <title>UsersModule&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M208,-198.02C208,-215.37 208,-239 208,-239 208,-239 275.05,-239 275.05,-239"/>
-<polygon fill="black" stroke="black" points="275.05,-242.5 285.05,-239 275.05,-235.5 275.05,-242.5"/>
+<path fill="none" stroke="black" d="M336,-198.11C336,-198.11 336,-216.99 336,-216.99"/>
+<polygon fill="black" stroke="black" points="332.5,-216.99 336,-226.99 339.5,-216.99 332.5,-216.99"/>
 </g>
 <!-- AppService -->
 <g id="node6" class="node">
@@ -103,32 +111,44 @@
 <!-- AppService&#45;&gt;AppModule -->
 <g id="edge5" class="edge">
 <title>AppService&#45;&gt;AppModule</title>
-<path fill="none" stroke="black" d="M81,-198.28C81,-219.32 81,-251 81,-251 81,-251 275.27,-251 275.27,-251"/>
-<polygon fill="black" stroke="black" points="275.27,-254.5 285.27,-251 275.27,-247.5 275.27,-254.5"/>
+<path fill="none" stroke="black" d="M81,-198.28C81,-219.32 81,-251 81,-251 81,-251 284.18,-251 284.18,-251"/>
+<polygon fill="black" stroke="black" points="284.18,-254.5 294.18,-251 284.18,-247.5 284.18,-254.5"/>
+</g>
+<!-- NeonDatabaseService -->
+<g id="node7" class="node">
+<title>NeonDatabaseService</title>
+<ellipse fill="#fdb462" stroke="black" cx="120" cy="-104" rx="96.09" ry="18"/>
+<text text-anchor="middle" x="120" y="-99.8" font-family="Times,serif" font-size="14.00">NeonDatabaseService</text>
+</g>
+<!-- NeonDatabaseService&#45;&gt;DatabaseModule -->
+<g id="edge6" class="edge">
+<title>NeonDatabaseService&#45;&gt;DatabaseModule</title>
+<path fill="none" stroke="black" d="M188.93,-116.89C188.93,-116.89 188.93,-151.91 188.93,-151.91"/>
+<polygon fill="black" stroke="black" points="185.43,-151.91 188.93,-161.91 192.43,-151.91 185.43,-151.91"/>
 </g>
 <!-- ReadOnlyUserService -->
-<g id="node7" class="node">
+<g id="node8" class="node">
 <title>ReadOnlyUserService</title>
-<ellipse fill="#fdb462" stroke="black" cx="329" cy="-104" rx="97.25" ry="18"/>
-<text text-anchor="middle" x="329" y="-99.8" font-family="Times,serif" font-size="14.00">ReadOnlyUserService</text>
+<ellipse fill="#fdb462" stroke="black" cx="532" cy="-104" rx="97.25" ry="18"/>
+<text text-anchor="middle" x="532" y="-99.8" font-family="Times,serif" font-size="14.00">ReadOnlyUserService</text>
 </g>
 <!-- ReadOnlyUserService&#45;&gt;UsersModule -->
-<g id="edge6" class="edge">
+<g id="edge7" class="edge">
 <title>ReadOnlyUserService&#45;&gt;UsersModule</title>
-<path fill="none" stroke="black" d="M242.67,-112.42C242.67,-112.42 242.67,-151.73 242.67,-151.73"/>
-<polygon fill="black" stroke="black" points="239.17,-151.73 242.67,-161.73 246.17,-151.73 239.17,-151.73"/>
+<path fill="none" stroke="black" d="M486.34,-120.34C486.34,-130.64 486.34,-142 486.34,-142 486.34,-142 351.24,-142 351.24,-142 351.24,-142 351.24,-151.89 351.24,-151.89"/>
+<polygon fill="black" stroke="black" points="347.74,-151.89 351.24,-161.89 354.74,-151.89 347.74,-151.89"/>
 </g>
 <!-- WriteUserService -->
-<g id="node8" class="node">
+<g id="node9" class="node">
 <title>WriteUserService</title>
-<ellipse fill="#fdb462" stroke="black" cx="133" cy="-104" rx="80.41" ry="18"/>
-<text text-anchor="middle" x="133" y="-99.8" font-family="Times,serif" font-size="14.00">WriteUserService</text>
+<ellipse fill="#fdb462" stroke="black" cx="336" cy="-104" rx="80.41" ry="18"/>
+<text text-anchor="middle" x="336" y="-99.8" font-family="Times,serif" font-size="14.00">WriteUserService</text>
 </g>
 <!-- WriteUserService&#45;&gt;UsersModule -->
-<g id="edge7" class="edge">
+<g id="edge8" class="edge">
 <title>WriteUserService&#45;&gt;UsersModule</title>
-<path fill="none" stroke="black" d="M187.75,-117.24C187.75,-117.24 187.75,-151.79 187.75,-151.79"/>
-<polygon fill="black" stroke="black" points="184.25,-151.79 187.75,-161.79 191.25,-151.79 184.25,-151.79"/>
+<path fill="none" stroke="black" d="M320.76,-122.01C320.76,-122.01 320.76,-151.85 320.76,-151.85"/>
+<polygon fill="black" stroke="black" points="317.26,-151.85 320.76,-161.85 324.26,-151.85 317.26,-151.85"/>
 </g>
 </g>
 </svg>

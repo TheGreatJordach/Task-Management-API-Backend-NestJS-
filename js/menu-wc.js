@@ -99,6 +99,20 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="modules/DatabaseModule.html" data-type="entity-link" >DatabaseModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
+                                        'data-bs-target="#injectables-links-module-DatabaseModule-d8e171c9091d99e6fe6841c0ee45c74c946b04aa3aeec4dd4dad192853771652020efcddfc012f78f42e1b851adfefeb52472115b4571f480b9620b637ab0600"' : 'data-bs-target="#xs-injectables-links-module-DatabaseModule-d8e171c9091d99e6fe6841c0ee45c74c946b04aa3aeec4dd4dad192853771652020efcddfc012f78f42e1b851adfefeb52472115b4571f480b9620b637ab0600"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-DatabaseModule-d8e171c9091d99e6fe6841c0ee45c74c946b04aa3aeec4dd4dad192853771652020efcddfc012f78f42e1b851adfefeb52472115b4571f480b9620b637ab0600"' :
+                                        'id="xs-injectables-links-module-DatabaseModule-d8e171c9091d99e6fe6841c0ee45c74c946b04aa3aeec4dd4dad192853771652020efcddfc012f78f42e1b851adfefeb52472115b4571f480b9620b637ab0600"' }>
+                                        <li class="link">
+                                            <a href="injectables/NeonDatabaseService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NeonDatabaseService</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </li>
                             <li class="link">
                                 <a href="modules/UsersModule.html" data-type="entity-link" >UsersModule</a>
