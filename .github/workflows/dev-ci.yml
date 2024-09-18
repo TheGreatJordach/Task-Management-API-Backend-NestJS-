@@ -79,16 +79,18 @@ jobs:
         run: yarn install
       - name: Run Jest tests with coverage
         run:  yarn run test:cov     # Alternative : yarn test:cov
+
+     # Upload the coverage to CodeCov
       - name: Upload coverage to CodeCov
         if: ${{ !cancelled() }}
-        # codecov/test-results-action@v1
-        uses: codecov/codecov-action@v4
+        # codecov/test-results-action@v1 | codecov/codecov-action@v4
+        uses: codecov/test-results-action@v1
         with:
             token: ${{ secrets.CODECOV_TOKEN }}
-            files: ./coverage/lcov.info
-            flags: unittests
-            name: codecov-umbrella
-            fail_ci_if_error: true
+           # files: ./coverage/lcov.info
+           # flags: unittests
+           # name: codecov-umbrella
+           # fail_ci_if_error: true
 
 
   sonarcloud:
