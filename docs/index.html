@@ -82,56 +82,179 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-<h2>Description</h2>
-<p><a href="https://github.com/nestjs/nest">Nest</a> framework TypeScript starter repository.</p>
-<h2>Installation</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ yarn install</code></pre></div><h2>Running the app</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod</code></pre></div><h2>Test</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov</code></pre></div><h2>Support</h2>
-<p>Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you&#39;d like to join them, please <a href="https://docs.nestjs.com/support">read more here</a>.</p>
-<h2>Stay in touch</h2>
+<h1>Task Management API (Backend NestJS)</h1>
+<h2>Overview</h2>
+<p>The <strong>Task Management API</strong> is a backend system built using <a href="https://nestjs.com/">NestJS</a> that allows users to create, update, and manage tasks within projects. Users can be assigned different roles such as Admin, Project Manager, or Team Member, each with different permissions. The API also supports real-time task updates using WebSockets and email notifications for task assignment and status changes.</p>
+<p><a href="https://codecov.io/gh/TheGreatJordach/Task-Management-API-Backend-NestJS-"><img src="https://codecov.io/gh/TheGreatJordach/Task-Management-API-Backend-NestJS-/branch/dev/graph/badge.svg?token=aixWyMJyId" alt="codecov" class="img-responsive"></a>
+<a href="https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-ci.yml"><img src="https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-ci.yml/badge.svg" alt="Dev CI Pipeline" class="img-responsive"></a>
+<a href="https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/neon_workflow.yml"><img src="https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/neon_workflow.yml/badge.svg" alt="Neon and Vercel Deployment Workflow" class="img-responsive"></a></p>
+<h2>Features</h2>
 <ul>
-<li>Author - <a href="https://kamilmysliwiec.com">Kamil Myśliwiec</a></li>
-<li>Website - <a href="https://nestjs.com/">https://nestjs.com</a></li>
-<li>Twitter - <a href="https://twitter.com/nestframework">@nestframework</a></li>
+<li><strong>User Authentication</strong>: Register, login, and manage user sessions using JWT-based authentication.</li>
+<li><strong>Role-Based Access Control (RBAC)</strong>: Admins, Project Managers, and Team Members with different access levels.</li>
+<li><strong>Task Management</strong>: Create, update, delete, and assign tasks to users within projects.</li>
+<li><strong>Project Management</strong>: Organize tasks into projects for better task categorization.</li>
+<li><strong>Real-time Notifications</strong>: Get notified of task updates (e.g., status changes) in real-time using WebSockets.</li>
+<li><strong>Email Notifications</strong>: Receive email notifications when tasks are assigned or updated.</li>
+<li><strong>Scalable Architecture</strong>: <strong>Neon (PostgreSQL)</strong><ul>
+<li><strong>Neon offers a free PostgreSQL database with 10,000 requests</strong> per month, 3 GB of data storage, and free scaling.
+  Setup Steps:<ul>
+<li>Sign up for Neon.</li>
+<li>Create a new PostgreSQL database instance.</li>
+<li>Get the connection string from Neon, and use it in your .env file (DATABASE_URL).</li>
 </ul>
-<h2>License</h2>
-<p>Nest is <a href="LICENSE">MIT licensed</a>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Technologies</h2>
+<ul>
+<li><strong>NestJS</strong>: Node.js framework for building efficient, scalable applications.</li>
+<li><strong>TypeORM</strong>: ORM for database interactions with support for PostgreSQL or MySQL.</li>
+<li><strong>Passport.js</strong>: Authentication middleware for handling JWT-based auth.</li>
+<li><strong>WebSockets</strong>: Real-time communication for task updates.</li>
+<li><strong>Nodemailer</strong>: For sending email notifications.</li>
+<li><strong>Deployment</strong> for Backend (NestJS API)</li>
+</ul>
+<h3>CI/CD Pipeline</h3>
+<p>This project uses a continuous integration and continuous deployment (CI/CD) pipeline to ensure code quality, test coverage, and seamless deployments.</p>
+<h4>Pipeline Overview</h4>
+<ol>
+<li>GitHub Actions:<ul>
+<li>Triggers on every push or pull request to the main branch.</li>
+<li>Runs the following checks:</li>
+<li>Linting: Ensures code consistency with ESLint.</li>
+<li>Unit Tests: Runs unit tests and uploads coverage reports to
+ CodeCov.</li>
+</ul>
+</li>
+</ol>
+<p><strong>2. SonarCloud:</strong> </p>
+<ul>
+<li>Analyzes code for potential bugs, vulnerabilities,     * and maintainability issues.</li>
+<li>Build &amp; Deploy: Builds the application and deploys it to the production environment.</li>
+</ul>
+<p><strong>3. SonarCloud:</strong></p>
+<ul>
+<li>Integrates with GitHub Actions to perform static code analysis.</li>
+<li>Enforces quality gates to ensure high code quality.</li>
+<li>Scans for bugs, security vulnerabilities, and code smells.</li>
+</ul>
+<ol start="4">
+<li><p>CodeCov:</p>
+<ul>
+<li>Measures and tracks test coverage.</li>
+<li>Reports coverage results directly in pull requests to ensure sufficient code coverage.</li>
+<li>A badge is included in the README to display current coverage status.</li>
+</ul>
+</li>
+<li><p>Neon PostgreSQL:</p>
+<ul>
+<li>Free-tier PostgreSQL database used for production.</li>
+<li>Migrations are automatically applied after deployment.</li>
+</ul>
+</li>
+</ol>
+<h2>Prerequisites</h2>
+<p>To run this project locally, ensure you have the following installed:</p>
+<ul>
+<li>Node.js (v16+)</li>
+<li>PostgreSQL or MySQL database</li>
+<li>Yarn or npm (Yarn is preferred)</li>
+</ul>
+<h2>Getting Started</h2>
+<h3>1. Clone the Repository</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">git clone https://github.com/yourusername/task-management-api.git
+cd task-management-api</code></pre></div><h3>2. Install Dependencies</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">yarn install</code></pre></div><h3>3. Set Up Environment Variables</h3>
+<p>Create a .env (see .env.example) file in the project root and add the following variables:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># Database configuration
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USER=your_db_user
+DATABASE_PASSWORD=your_db_password
+DATABASE_NAME=task_management_db
+
+# JWT Secret
+JWT_SECRET=your_secret_key
+
+# Email configuration (for Nodemailer)
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_USER=your_email&#64;example.com
+EMAIL_PASSWORD=your_email_password
+
+# WebSocket settings
+WEBSOCKET_PORT=3001</code></pre></div><h3>4. Set Up the Database</h3>
+<p>Ensure that you have PostgreSQL or MySQL running, then run migrations to set up the database schema:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">yarn typeorm migration:run</code></pre></div><h3>5. Start the Server</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">yarn start:dev</code></pre></div><h3>6. Build documentationn</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">yarn run docs</code></pre></div><h3>6. Build documentationn</h3>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">yarn serve-docs</code></pre></div><h3>API Documentation</h3>
+<p>You can explore the API documentation by visiting <code>http://localhost:3000/api</code> after starting the server. The documentation is <strong>auto-generated using Swagger</strong>.</p>
+<h5>Key Endpoints</h5>
+<ul>
+<li><p>Authentication</p>
+<ul>
+<li>POST /auth/signup: Register a new user</li>
+<li>POST /auth/login: Authenticate and obtain a JWT token</li>
+</ul>
+</li>
+<li><p>Users</p>
+<ul>
+<li>GET /users: Get all users (Admin access required)</li>
+<li>GET /users/:id: Get a user by ID</li>
+<li>PATCH /users/:id: Update user information (Admin/Project Manager)</li>
+</ul>
+</li>
+<li><p>Projects</p>
+<ul>
+<li>GET /projects: Get all projects</li>
+<li>POST /projects: Create a new project (Admin/Project Manager)</li>
+<li>PATCH /projects/:id: Update project details (Admin/Project Manager)</li>
+</ul>
+</li>
+<li><p>Tasks</p>
+<ul>
+<li>GET /tasks: Get all tasks for the current user</li>
+<li>POST /tasks: Create a new task (Admin/Project Manager)</li>
+<li>PATCH /tasks/:id: Update task status, assignment, etc. (Admin/Project Manager)</li>
+</ul>
+</li>
+<li><p>WebSockets</p>
+</li>
+<li><p>Real-time updates are pushed to subscribed users when task statuses change or new tasks are assigned.</p>
+</li>
+</ul>
+<h5>Tests</h5>
+<p>To run tests, execute:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">
+yarn test</code></pre></div><h4>Future Improvements</h4>
+<ul>
+<li>File Attachments: Support file uploads and attachments to tasks.</li>
+<li>Analytics Dashboard: Provide project managers with a dashboard to track task completion rates, project statuses, etc.</li>
+<li>Push Notifications: Add support for mobile push notifications.</li>
+</ul>
+<h4>Contributing</h4>
+<p>Contributions are welcome! Please follow these steps:</p>
+<ul>
+<li><p>Fork the repository.</p>
+</li>
+<li><p>Create a new feature branch (git checkout -b feature/your-feature).</p>
+</li>
+<li><p>Commit your changes (git commit -m &#39;Add some feature&#39;).</p>
+</li>
+<li><p>Push to the branch (git push origin feature/your-feature).</p>
+</li>
+<li><p>Open a pull request.</p>
+</li>
+<li><p>License</p>
+</li>
+<li><p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+</li>
+</ul>
+<h4>Contact</h4>
+<p>For any questions, feel free to contact the project maintainer at <a href="mailto:your_email@example.com">your_email@example.com</a>.</p>
 
 
 

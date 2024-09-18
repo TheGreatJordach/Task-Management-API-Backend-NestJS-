@@ -79,110 +79,139 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content miscellaneous-functions">
+               <div class="content controller">
                    <div class="content-data">
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Miscellaneous</li>
-  <li class="breadcrumb-item">Functions</li>
+  <li class="breadcrumb-item">Controllers</li>
+  <li class="breadcrumb-item" >UsersWriteController</li>
 </ol>
 
-<section data-compodoc="block-index">
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/users/write/write.user.controller.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>users</code>
+            </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <ul class="index-list">
-                        <li>
-                            <a href="#bootstrap" title="src/main.ts" ><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#envValidator" title="src/configuration/env.validation.ts" ><b>envValidator</b>&nbsp;&nbsp;&nbsp;(src/.../env.validation.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#IsNotEmptyString" title="src/common/decorators/validator.decotrator.ts" ><b>IsNotEmptyString</b>&nbsp;&nbsp;&nbsp;(src/.../validator.decotrator.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#IsPositiveInteger" title="src/common/decorators/validator.decotrator.ts" ><b>IsPositiveInteger</b>&nbsp;&nbsp;&nbsp;(src/.../validator.decotrator.ts)</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#deleteUser" >deleteUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#updateUser" >updateUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
         </tbody>
     </table>
 </section>
 
-    <h3>src/main.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="bootstrap"></a>
+                    <a name="deleteUser"></a>
                     <span class="name">
-                        <span ><b>bootstrap</b></span>
-                        <a href="#bootstrap"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>deleteUser</b></span>
+                        <a href="#deleteUser"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>bootstrap()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteUser(undefined: <a href="../classes/IdDto.html" target="_self">IdDto</a>)</code>
                 </td>
             </tr>
 
-
-
-
-        </tbody>
-    </table>
-</section>    <h3>src/configuration/env.validation.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="envValidator"></a>
-                    <span class="name">
-                        <span ><b>envValidator</b></span>
-                        <a href="#envValidator"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>envValidator(providedConfig: Record)</code>
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;:id&#x27;)<br />@ApiTags()<br />@ApiOperation({})<br />@ApiResponse({})<br /></code>
                 </td>
             </tr>
 
-
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/users/write/write.user.controller.ts:28</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Validates the provided configuration object against the <code>EnvironmentVariables</code> class schema.
-Converts the provided configuration object to an instance of <code>EnvironmentVariables</code> using <code>plainToInstance</code>.
-Validates the converted instance using <code>validateSync</code> from class-validator.
-If any validation errors are found, throws an error with the number of invalid environment variables.</p>
-</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -193,14 +222,12 @@ If any validation errors are found, throws an error with the number of invalid e
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>providedConfig</td>
                                             <td>
-                                                        <code>Record</code>
+                                                            <code><a href="../classes/IdDto.html" target="_self" >IdDto</a></code>
                                             </td>
 
                                             <td>
@@ -208,69 +235,16 @@ If any validation errors are found, throws an error with the number of invalid e
                                             </td>
 
 
-                                            <td>
-                                                    <p>The configuration object to validate</p>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>src/common/decorators/validator.decotrator.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="IsNotEmptyString"></a>
-                    <span class="name">
-                        <span ><b>IsNotEmptyString</b></span>
-                        <a href="#IsNotEmptyString"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>IsNotEmptyString(validationOption?: ValidationOptions)</code>
-                </td>
-            </tr>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
-
-
-
-            <tr>
-                <td class="col-md-4">
-
+                        </div>
                             <div class="io-description">
-                                <b>Parameters :</b>
                                 
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>validationOption</td>
-                                            <td>
-                                                        <code>ValidationOptions</code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                 </td>
             </tr>
@@ -280,20 +254,39 @@ If any validation errors are found, throws an error with the number of invalid e
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="IsPositiveInteger"></a>
+                    <a name="updateUser"></a>
                     <span class="name">
-                        <span ><b>IsPositiveInteger</b></span>
-                        <a href="#IsPositiveInteger"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>updateUser</b></span>
+                        <a href="#updateUser"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>IsPositiveInteger(validationOption?: ValidationOptions)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUser(undefined: <a href="../classes/IdDto.html" target="_self">IdDto</a>, updateUserDto: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiTags()<br />@ApiOperation({})<br />@ApiResponse({})<br />@ApiBody({})<br /></code>
+                </td>
+            </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/users/write/write.user.controller.ts:18</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
@@ -312,13 +305,24 @@ If any validation errors are found, throws an error with the number of invalid e
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>validationOption</td>
                                             <td>
-                                                        <code>ValidationOptions</code>
+                                                            <code><a href="../classes/IdDto.html" target="_self" >IdDto</a></code>
                                             </td>
 
                                             <td>
-                                                    Yes
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>updateUserDto</td>
+                                            <td>
+                                                            <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
                                             </td>
 
 
@@ -326,11 +330,70 @@ If any validation errors are found, throws an error with the number of invalid e
                                     </tbody>
                                 </table>
                             </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
-</section>
+</section>    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Param, Patch, } from &quot;@nestjs/common&quot;;
+import { WriteUserService } from &quot;./write.user.service&quot;;
+import { IdDto } from &quot;../../common/dto/id-dto&quot;;
+import { UpdateUserDto } from &quot;../dto/update-user.dto&quot;;
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
+
+@Controller(&#x27;users&#x27;)
+export class UsersWriteController {
+
+  constructor(private readonly userWriteService:WriteUserService) {}
+
+
+  @Patch(&quot;/:id&quot;)
+  @ApiTags()
+  @ApiOperation({})
+  @ApiResponse({})
+  @ApiBody({})
+  updateUser(@Param() { id }: IdDto, @Body() updateUserDto:UpdateUserDto) {
+    console.log(typeof id);
+    return this.userWriteService.update(id,updateUserDto)
+  }
+
+
+  @Delete(&quot;:id&quot;)
+  @ApiTags()
+  @ApiOperation({})
+  @ApiResponse({})
+  deleteUser(@Param() { id }: IdDto) {
+   return this.userWriteService.remove(id)
+  }
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                    </div><div class="search-results">
@@ -358,8 +421,8 @@ If any validation errors are found, throws an error with the number of invalid e
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-functions';
-            var COMPODOC_CURRENT_PAGE_URL = 'functions.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsersWriteController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

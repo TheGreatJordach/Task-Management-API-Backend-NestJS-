@@ -26,7 +26,15 @@ export class EnvironmentVariables {
 
 }
 
-
+/**
+ * Validates the provided configuration object against the `EnvironmentVariables` class schema.
+ * Converts the provided configuration object to an instance of `EnvironmentVariables` using `plainToInstance`.
+ * Validates the converted instance using `validateSync` from class-validator.
+ * If any validation errors are found, throws an error with the number of invalid environment variables.
+ * @param providedConfig The configuration object to validate
+ * @returns The validated configuration object as an instance of `EnvironmentVariables`
+ * @throws Error if any environment variable is invalid
+ */
 export function envValidator(providedConfig:Record<string, unknown> ){
   const validatedConfig = plainToInstance(EnvironmentVariables,providedConfig,{
     enableCircularCheck:true
