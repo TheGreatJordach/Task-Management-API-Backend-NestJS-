@@ -1,15 +1,12 @@
 name: Main Deployment Pipeline
 
-
 on:
- pull_request:
+  pull_request:
     branches:
       - main
     types: [closed]
 
-
 jobs:
-
 
   validate-env:
     name: Load and Validate Environment Variables
@@ -22,7 +19,7 @@ jobs:
           echo "DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}"
           echo "DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}"
           echo "DATASOURCE_DATABASE=${{ secrets.DATASOURCE_DATABASE }}"
-          echo "DATABASE_URL"=${{ secrets.DATABASE_URL }}
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}"
           echo "APP_PORT=${{ secrets.APP_PORT }}"
           echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}"
           echo "SWAGGER_PATH=${{ secrets.SWAGGER_PATH }}"
@@ -42,7 +39,6 @@ jobs:
           SWAGGER_TITLE: ${{ secrets.SWAGGER_TITLE }}
           SWAGGER_PATH: ${{ secrets.SWAGGER_PATH }}
           # Add more environment variables here
-
 
   sonarcloud:
     name: SonarCloud Code Analysis
@@ -88,30 +84,32 @@ jobs:
     name: Check if Neon Branch Exists
     needs: setup
     runs-on: ubuntu-latest
+    outputs:
+      branch_exists: ${{ steps.check_branch.outputs.branch_exists }}
     steps:
       - name: Check Neon Branch
         id: check_branch
         run: |
           BRANCH_NAME="neon-deployment-${{ needs.setup.outputs.branch }}"
-          if neonctl branch list --project-id ${{ vars.NEON_PROJECT_ID }} | grep -q $BRANCH_NAME; then
+          if neonctl branch list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep -q $BRANCH_NAME; then
             echo "Branch exists"
-            echo "branch_exists=true" >> $GITHUB_ENV
+            echo "::set-output name=branch_exists::true"
           else
             echo "Branch does not exist"
-            echo "branch_exists=false" >> $GITHUB_ENV
+            echo "::set-output name=branch_exists::false"
           fi
 
   create_neon_branch:
     name: Create or Reuse Neon Branch for Deployment
     needs: [ setup, check_branch_exists ]
-    if: env.branch_exists == 'false'
+    if: needs.check_branch_exists.outputs.branch_exists == 'false'
     runs-on: ubuntu-latest
     steps:
       - name: Create Neon Branch
         id: create_neon_branch
         uses: neondatabase/create-branch-action@v5
         with:
-          project_id: ${{ vars.NEON_PROJECT_ID }}
+          project_id: ${{ secrets.NEON_PROJECT_ID }}
           username: "neondb_owner"
           parent: deployment
           branch_name: neon-deployment/${{ needs.setup.outputs.branch }}
@@ -164,24 +162,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete Neon Branch
-        if: env.branch_exists == 'true'
+        if: needs.check_branch_exists.outputs.branch_exists == 'true'
         uses: neondatabase/delete-branch-action@v3
         with:
-          project_id: ${{ vars.NEON_PROJECT_ID }}
+          project_id: ${{ secrets.NEON_PROJECT_ID }}
           branch: neon-deployment-${{ needs.setup.outputs.branch }}
           api_key: ${{ secrets.NEON_API_KEY }}
 
   recreate_neon_branch:
     name: Recreate Neon Branch
     needs: delete_neon_branch
-    if: failure() && env.branch_exists == 'true'
+    if: failure() && needs.check_branch_exists.outputs.branch_exists == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Recreate Neon Branch
         id: recreate_neon_branch
         uses: neondatabase/create-branch-action@v5
         with:
-          project_id: ${{ vars.NEON_PROJECT_ID }}
+          project_id: ${{ secrets.NEON_PROJECT_ID }}
           username: "neondb_owner"
           parent: deployment
           branch_name: neon-deployment/${{ needs.setup.outputs.branch }}
@@ -191,8 +189,3 @@ jobs:
         run: npm run db:migrate
         env:
           DATABASE_URL: "${{ steps.recreate_neon_branch.outputs.db_url_with_pooler }}"
-
-
-
-
-
