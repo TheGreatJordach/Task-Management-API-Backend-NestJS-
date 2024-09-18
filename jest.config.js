@@ -18,10 +18,10 @@ module.exports = {
   reporters: [
     "default",
     [
-      "jest-junit",
+      "jest-junit",                // Alternative outputName: jest-sonar-reporter"",
       {
         outputDirectory: "coverage", // Ensure this matches coverageDirectory if needed
-        outputName: "junit.xml",
+        outputName: "junit.xml",     // Alternative outputName: "junit.xml",
       },
     ],
   ],

@@ -12,10 +12,13 @@ Content-Type: application/json
 ### Update USER
 ### Return user info if sucess
 ### return message "Update Failed"
-PATCH http://localhost:3000/api/users/12
+PATCH http://localhost:3000/api/users/122
 Content-Type: application/json
 
 {
-"id": 999,
-"value": "content"
+"firstName": "Jordach",
+"lastName":"Makaya",
+"email": "jordach.makaya@me.com",
+"role": "user"
+
 }
