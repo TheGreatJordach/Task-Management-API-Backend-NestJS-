@@ -112,7 +112,22 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#databaseDevConfig" title="src/configuration/database-dev.config.ts" ><b>databaseDevConfig</b>&nbsp;&nbsp;&nbsp;(src/.../database-dev.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#licence" title="src/configuration/swagger.const.ts" ><b>licence</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.const.ts)</a>
+                        </li>
+                        <li>
                             <a href="#module" title="src/main.ts" ><b>module</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#swaggerConfig" title="src/configuration/swagger-config.document.ts" ><b>swaggerConfig</b>&nbsp;&nbsp;&nbsp;(src/.../swagger-config.document.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#swaggerServer" title="src/configuration/swagger.const.ts" ><b>swaggerServer</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.const.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#swaggerTitle" title="src/configuration/swagger.const.ts" ><b>swaggerTitle</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.const.ts)</a>
                         </li>
                         <li>
                             <a href="#TestDbConfig" title="src/configuration/test-db.config.ts" ><b>TestDbConfig</b>&nbsp;&nbsp;&nbsp;(src/.../test-db.config.ts)</a>
@@ -124,6 +139,102 @@
     </table>
 </section>
 
+    <h3>src/configuration/database-dev.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="databaseDevConfig"></a>
+                    <span class="name">
+                        <span ><b>databaseDevConfig</b></span>
+                        <a href="#databaseDevConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(configService:ConfigService) &#x3D;&gt; ({
+    type: &quot;postgres&quot;,
+    host: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_HOST&#x27;),
+    port: configService.getOrThrow&lt;number&gt;(&#x27;DATASOURCE_PORT&#x27;),
+    username: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_USERNAME&#x27;),
+    password: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_PASSWORD&#x27;),
+    database: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_DATABASE&#x27;),
+    synchronize: true,
+    logging: true,
+    entities: [],}
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/configuration/swagger.const.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="licence"></a>
+                    <span class="name">
+                        <span ><b>licence</b></span>
+                        <a href="#licence"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>process.env.MIT_LICENCE_URL</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="swaggerServer"></a>
+                    <span class="name">
+                        <span ><b>swaggerServer</b></span>
+                        <a href="#swaggerServer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>process.env.SWAGGER_SERVER</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="swaggerTitle"></a>
+                    <span class="name">
+                        <span ><b>swaggerTitle</b></span>
+                        <a href="#swaggerTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>process.env.SWAGGER_TITLE</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/main.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -141,6 +252,35 @@
                     <td class="col-md-4">
                         <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/configuration/swagger-config.document.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="swaggerConfig"></a>
+                    <span class="name">
+                        <span ><b>swaggerConfig</b></span>
+                        <a href="#swaggerConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new DocumentBuilder()
+  .setLicense(&quot;MIT&quot;,licence)
+  .addServer(swaggerServer)
+  .setTitle(swaggerTitle)
+  .setVersion(&quot;1.0&quot;)
+  .setDescription(&quot;API documentation for Task Management app&quot;)
+  .build()</code>
                     </td>
                 </tr>
 
