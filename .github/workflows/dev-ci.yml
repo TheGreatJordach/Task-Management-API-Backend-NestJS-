@@ -22,7 +22,12 @@ jobs:
           DATASOURCE_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
           DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
           DATASOURCE_DATABASE: ${{ secrets.DATASOURCE_DATABASE }}
-          # Add more environment variables here
+          # Add Swagger Variables
+          MIT_LICENCE_URL: ${{ secrets.MIT_LICENCE_URL }}
+          SWAGGER_SERVER: ${{ secrets.SWAGGER_SERVER }}
+          SWAGGER_TITLE: ${{ secrets.SWAGGER_TITLE }}
+          SWAGGER_PATH: ${{ secrets.SWAGGER_PATH }}
+          API_PREFIX: ${{ secrets.API_PREFIX }}
   lint:
     name: Lint Code
     runs-on: ubuntu-latest

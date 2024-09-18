@@ -19,6 +19,7 @@ jobs:
           echo "DATASOURCE_DATABASE=${{ secrets.DATASOURCE_DATABASE }}"
           echo "APP_PORT=${{ secrets.APP_PORT }}"
           echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}"
+          echo "SWAGGER_PATH=${{ secrets.SWAGGER_PATH }}"
           # Add more checks as needed
         env:
           DATASOURCE_HOST: ${{ secrets.DATASOURCE_HOST }}
@@ -28,8 +29,13 @@ jobs:
           APP_PORT: ${{ secrets.APP_PORT }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          API_PREFIX: ${{ secrets.API_PREFIX }}
+          # Add Swagger Variables
+          MIT_LICENCE_URL: ${{ secrets.MIT_LICENCE_URL }}
+          SWAGGER_SERVER: ${{ secrets.SWAGGER_SERVER }}
+          SWAGGER_TITLE: ${{ secrets.SWAGGER_TITLE }}
+          SWAGGER_PATH: ${{ secrets.SWAGGER_PATH }}
           # Add more environment variables here
-
   deploy:
     name: Build and Deploy to Vercel
     runs-on: ubuntu-latest

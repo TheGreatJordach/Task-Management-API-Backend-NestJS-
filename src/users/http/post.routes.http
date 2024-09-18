@@ -1,0 +1,21 @@
+### Create USER
+### Return Token
+### Return message or Error
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
+
+### Update USER
+### Return user info if sucess
+### return message "Update Failed"
+PATCH http://localhost:3000/api/users/12
+Content-Type: application/json
+
+{
+"id": 999,
+"value": "content"
+}
