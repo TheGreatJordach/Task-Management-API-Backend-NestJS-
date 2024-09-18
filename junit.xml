@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="4" failures="0" errors="0" time="7.422">
+  <testsuite name="ReadOnlyUserService" errors="0" failures="0" skipped="0" timestamp="2024-09-18T16:39:50" time="6.102" tests="1">
+    <testcase classname="ReadOnlyUserService should be defined" name="ReadOnlyUserService should be defined" time="0.022">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2024-09-18T16:39:50" time="6.119" tests="1">
+    <testcase classname="AppController root should return &quot;Hello World!&quot;" name="AppController root should return &quot;Hello World!&quot;" time="0.025">
+    </testcase>
+  </testsuite>
+  <testsuite name="WriteUserService" errors="0" failures="0" skipped="0" timestamp="2024-09-18T16:39:50" time="6.108" tests="1">
+    <testcase classname="WriteUserService should be defined" name="WriteUserService should be defined" time="0.025">
+    </testcase>
+  </testsuite>
+  <testsuite name="DatabaseModule" errors="0" failures="0" skipped="0" timestamp="2024-09-18T16:39:51" time="6.825" tests="1">
+    <testcase classname="DatabaseModule should be defined" name="DatabaseModule should be defined" time="0.067">
+    </testcase>
+  </testsuite>
+</testsuites>

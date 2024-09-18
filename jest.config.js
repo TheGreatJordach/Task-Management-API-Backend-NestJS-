@@ -11,17 +11,18 @@ module.exports = {
     "!src/**/*.d.ts", // Exclude type definition files
     "!src/**/*.spec.ts", // Exclude test files from coverage
   ],
-  coverageDirectory: "coverage", // Make sure this is correct
+  testResultsProcessor:"jest-junit",   //jest-junit | jest-sonar-reporter
+  coverageDirectory: "./coverage", // Make sure this is correct
   testEnvironment: "node",
   coverageReporters: ["json", "lcov", "text", "clover"],
 
   reporters: [
     "default",
     [
-      "jest-junit",                // Alternative outputName: jest-sonar-reporter"",
+      "jest-junit",                // Alternative outputName: jest-sonar-reporter | jest-junit"",
       {
-        outputDirectory: "coverage", // Ensure this matches coverageDirectory if needed
-        outputName: "junit.xml",     // Alternative outputName: "junit.xml",
+        outputDirectory: "./coverage", // Ensure this matches coverageDirectory if needed
+        outputName: "junit.xml",     // Alternative outputName: "junit.xml | test-report.xml",
       },
     ],
   ],
