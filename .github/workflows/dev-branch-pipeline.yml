@@ -49,7 +49,7 @@ jobs:
 
        # Cache node_modules
         - name: Cache dependencies
-          uses: actions/cache@v3
+          uses: actions/cache@v4
           with:
            path: |
                node_modules
@@ -120,8 +120,7 @@ jobs:
             git config --global user.email "github-actions@github.com"
 
         - name: Authenticate GitHub CLI
-          env:
-            GH_TOKEN: ${{ secrets.GH_PAT }} # Use your personal access token
+
           run: |
             echo "${{ secrets.GH_PAT }}" | gh auth login --with-token
 
