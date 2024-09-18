@@ -3,20 +3,16 @@ name: Neon and Vercel Deployment Workflow
 on:
   push:
     branches:
-      - dev
       - main
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   setup:
     name: Setup
+    runs-on: ubuntu-latest
     outputs:
       branch: ${{ steps.branch_name.outputs.current_branch }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Get branch name
+      - name: Get Branch Name
         id: branch_name
         uses: tj-actions/branch-names@v8
 
@@ -28,8 +24,7 @@ jobs:
       - name: Check Neon Branch
         id: check_branch
         run: |
-          BRANCH_NAME="dev-${{ needs.setup.outputs.branch }}"
-          # Check if the branch exists using the neonctl CLI or relevant API
+          BRANCH_NAME="neon-deployment-${{ needs.setup.outputs.branch }}"
           if neonctl branch list --project-id ${{ vars.NEON_PROJECT_ID }} | grep -q $BRANCH_NAME; then
             echo "Branch exists"
             echo "branch_exists=true" >> $GITHUB_ENV
@@ -39,12 +34,9 @@ jobs:
           fi
 
   create_neon_branch:
-    name: Create Neon Branch for Dev
-    outputs:
-      db_url: ${{ steps.create_neon_branch_encode.outputs.db_url }}
-      db_url_with_pooler: ${{ steps.create_neon_branch_encode.outputs.db_url_with_pooler }}
+    name: Create or Reuse Neon Branch for Deployment
     needs: [setup, check_branch_exists]
-    if: github.ref == 'refs/heads/dev' && env.branch_exists == 'false'
+    if: env.branch_exists == 'false'
     runs-on: ubuntu-latest
     steps:
       - name: Create Neon Branch
@@ -52,7 +44,9 @@ jobs:
         uses: neondatabase/create-branch-action@v5
         with:
           project_id: ${{ vars.NEON_PROJECT_ID }}
-          branch_name: dev-${{ needs.setup.outputs.branch }}
+          username: "neondb_owner"
+          parent: deployment
+          branch_name: neon-deployment/${{ needs.setup.outputs.branch }}
           api_key: ${{ secrets.NEON_API_KEY }}
 
       - name: Run Migrations
@@ -60,36 +54,10 @@ jobs:
         env:
           DATABASE_URL: "${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
 
-  merge_to_main:
-    name: Auto-Merge Dev into Main
-    needs: create_neon_branch
-    if: github.ref == 'refs/heads/dev' && success()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Auto-merge dev to main
-        uses: pascalgn/automerge-action@v0.15.4
-        with:
-          merge-method: squash
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  delete_neon_branch:
-    name: Delete Neon Branch for Main
-    needs: setup
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Delete Neon Branch
-        uses: neondatabase/delete-branch-action@v3
-        with:
-          project_id: ${{ vars.NEON_PROJECT_ID }}
-          branch: dev-${{ needs.setup.outputs.branch }}
-          api_key: ${{ secrets.NEON_API_KEY }}
-
   deploy_to_vercel:
     name: Deploy to Vercel
-    needs: merge_to_main
-    if: github.ref == 'refs/heads/main' && success()
+    needs: create_neon_branch
+    if: success()
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Vercel
@@ -99,3 +67,38 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: ./ # Adjust based on your project structure
+
+  delete_neon_branch:
+    name: Delete Neon Branch
+    needs: [setup, create_neon_branch]
+    if: ${{ always() }} # Always run this job, regardless of previous job success
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Neon Branch
+        if: env.branch_exists == 'true'
+        uses: neondatabase/delete-branch-action@v3
+        with:
+          project_id: ${{ vars.NEON_PROJECT_ID }}
+          branch: neon-deployment-${{ needs.setup.outputs.branch }}
+          api_key: ${{ secrets.NEON_API_KEY }}
+
+  recreate_neon_branch:
+    name: Recreate Neon Branch
+    needs: delete_neon_branch
+    if: failure() && env.branch_exists == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recreate Neon Branch
+        id: recreate_neon_branch
+        uses: neondatabase/create-branch-action@v5
+        with:
+          project_id: ${{ vars.NEON_PROJECT_ID }}
+          username: "neondb_owner"
+          parent: deployment
+          branch_name: neon-deployment/${{ needs.setup.outputs.branch }}
+          api_key: ${{ secrets.NEON_API_KEY }}
+
+      - name: Run Migrations
+        run: npm run db:migrate
+        env:
+          DATABASE_URL: "${{ steps.recreate_neon_branch.outputs.db_url_with_pooler }}"

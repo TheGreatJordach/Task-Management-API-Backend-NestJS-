@@ -17,6 +17,7 @@ jobs:
           echo "DATASOURCE_USERNAME=${{ secrets.DATASOURCE_USERNAME }}"
           echo "DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }}"
           echo "DATASOURCE_DATABASE=${{ secrets.DATASOURCE_DATABASE }}"
+          echo "DATABASE_URL"=${{ secrets.DATABASE_URL }}
           echo "APP_PORT=${{ secrets.APP_PORT }}"
           echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}"
           echo "SWAGGER_PATH=${{ secrets.SWAGGER_PATH }}"
@@ -36,32 +37,39 @@ jobs:
           SWAGGER_TITLE: ${{ secrets.SWAGGER_TITLE }}
           SWAGGER_PATH: ${{ secrets.SWAGGER_PATH }}
           # Add more environment variables here
-  deploy:
-    name: Build and Deploy to Vercel
-    runs-on: ubuntu-latest
-    needs: validate-env
-    if: success() # Ensure this job only runs if 'validate-env' is successful
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: yarn install
-      - name: Build the project
-        run: yarn build
-      - name: Deploy to Vercel
-        run: yarn vercel --prod
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-  database:
-    name: Apply Migrations on Neon PostgresSQL
+
+  sonarcloud:
+    name: SonarCloud Code Analysis
     runs-on: ubuntu-latest
     needs: validate-env
-    if: success() # Ensure this job only runs if 'validate-env' is successful
+    if: success() # Ensure the build is clean
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full depth is recommended for accurate SonarCloud analysis
+
       - name: Install dependencies
         run: yarn install
-      - name: Apply migrations
-        run: yarn typeorm migration:run
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.organization=thegreatjordach
+            -Dsonar.projectKey=TheGreatJordach_Task-Management-API-Backend-NestJS-
+            -Dsonar.sources=src/
+            -Dsonar.test.exclusions=**/*.spec.ts
+            -Dsonar.tests=src/
+            -Dsonar.verbose=true
+            -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
+
+
+
