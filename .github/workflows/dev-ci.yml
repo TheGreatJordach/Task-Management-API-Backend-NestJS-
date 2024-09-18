@@ -61,7 +61,8 @@ jobs:
   sonarcloud:
     name: SonarCloud Code Analysis
     runs-on: ubuntu-latest
-    if: ${{ needs.test.result == 'success' }} # Run only if the test job is successful
+    needs: test
+    if: success() # Run only if the test job is successful
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

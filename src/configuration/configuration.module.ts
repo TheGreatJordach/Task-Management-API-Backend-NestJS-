@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule,  } from "@nestjs/config";
+import { Module, ValidationPipe } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
 import { CacheModule } from "@nestjs/cache-manager";
+import { APP_PIPE } from "@nestjs/core";
 
 
 @Module({
@@ -35,8 +36,18 @@ import { CacheModule } from "@nestjs/cache-manager";
           max,
         }
       }
+    })],
+  providers: [{
+    provide: APP_PIPE,
+    useValue: new ValidationPipe({
+      whitelist:true,
+      transform:true,
+      forbidNonWhitelisted:true,
+      transformOptions:{
+        enableImplicitConversion:true
+      }
     })
-  ]
+  }],
 
 })
 export class ConfigurationModule {}
