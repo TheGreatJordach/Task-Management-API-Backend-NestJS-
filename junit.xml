@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="6.066">
-  <testsuite name="DatabaseModule" errors="0" failures="0" skipped="0" timestamp="2024-09-18T18:45:20" time="5.951" tests="1">
-    <testcase classname="DatabaseModule should be defined" name="DatabaseModule should be defined" time="0.065">
+<testsuites name="jest tests" tests="10" failures="0" errors="0" time="18.409">
+  <testsuite name="Validator" errors="0" failures="0" skipped="0" timestamp="2024-09-18T22:15:08" time="9.608" tests="6">
+    <testcase classname="Validator should return validated configuration object when provided with valid configuration" name="Validator should return validated configuration object when provided with valid configuration" time="0.015">
+    </testcase>
+    <testcase classname="Validator should pass without errors when provided with a valid configuration" name="Validator should pass without errors when provided with a valid configuration" time="0.002">
+    </testcase>
+    <testcase classname="Validator should throw an error when required environment variables are missing" name="Validator should throw an error when required environment variables are missing" time="0.01">
+    </testcase>
+    <testcase classname="Validator should throw an error when required environment variables are missing" name="Validator should throw an error when required environment variables are missing" time="0.002">
+    </testcase>
+    <testcase classname="Validator should throw an error when environment variables have incorrect data types" name="Validator should throw an error when environment variables have incorrect data types" time="0.006">
+    </testcase>
+    <testcase classname="Validator should throw an error when environment variables have incorrect types" name="Validator should throw an error when environment variables have incorrect types" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="WriteUserService" errors="0" failures="0" skipped="0" timestamp="2024-09-18T22:15:08" time="10.296" tests="1">
+    <testcase classname="WriteUserService should be defined" name="WriteUserService should be defined" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="ReadOnlyUserService" errors="0" failures="0" skipped="0" timestamp="2024-09-18T22:15:08" time="10.288" tests="1">
+    <testcase classname="ReadOnlyUserService should be defined" name="ReadOnlyUserService should be defined" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppController" errors="0" failures="0" skipped="0" timestamp="2024-09-18T22:15:08" time="10.292" tests="1">
+    <testcase classname="AppController root should return &quot;Hello World!&quot;" name="AppController root should return &quot;Hello World!&quot;" time="0.021">
+    </testcase>
+  </testsuite>
+  <testsuite name="DatabaseModule" errors="0" failures="0" skipped="0" timestamp="2024-09-18T22:15:08" time="17.801" tests="1">
+    <testcase classname="DatabaseModule should be defined" name="DatabaseModule should be defined" time="0.337">
     </testcase>
   </testsuite>
 </testsuites>

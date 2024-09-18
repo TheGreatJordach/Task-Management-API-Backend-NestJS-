@@ -79,7 +79,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content miscellaneous-functions">
+               <div class="content miscellaneous-variables">
                    <div class="content-data">
 
 
@@ -101,7 +101,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Miscellaneous</li>
-  <li class="breadcrumb-item">Functions</li>
+  <li class="breadcrumb-item">Variables</li>
 </ol>
 
 <section data-compodoc="block-index">
@@ -112,16 +112,25 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#bootstrap" title="src/main.ts" ><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
+                            <a href="#databaseDevConfig" title="src/configuration/database-dev.config.ts" ><b>databaseDevConfig</b>&nbsp;&nbsp;&nbsp;(src/.../database-dev.config.ts)</a>
                         </li>
                         <li>
-                            <a href="#envValidator" title="src/configuration/env.validation.ts" ><b>envValidator</b>&nbsp;&nbsp;&nbsp;(src/.../env.validation.ts)</a>
+                            <a href="#licence" title="src/configuration/swagger.const.ts" ><b>licence</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.const.ts)</a>
                         </li>
                         <li>
-                            <a href="#IsNotEmptyString" title="src/common/decorators/validator.decotrator.ts" ><b>IsNotEmptyString</b>&nbsp;&nbsp;&nbsp;(src/.../validator.decotrator.ts)</a>
+                            <a href="#module" title="src/main.ts" ><b>module</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
                         </li>
                         <li>
-                            <a href="#IsPositiveInteger" title="src/common/decorators/validator.decotrator.ts" ><b>IsPositiveInteger</b>&nbsp;&nbsp;&nbsp;(src/.../validator.decotrator.ts)</a>
+                            <a href="#swaggerConfig" title="src/configuration/swagger-config.document.ts" ><b>swaggerConfig</b>&nbsp;&nbsp;&nbsp;(src/.../swagger-config.document.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#swaggerServer" title="src/configuration/swagger.const.ts" ><b>swaggerServer</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.const.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#swaggerTitle" title="src/configuration/swagger.const.ts" ><b>swaggerTitle</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.const.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TestDbConfig" title="src/configuration/test-db.config.ts" ><b>TestDbConfig</b>&nbsp;&nbsp;&nbsp;(src/.../test-db.config.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -130,207 +139,192 @@
     </table>
 </section>
 
-    <h3>src/main.ts</h3>
-    <section data-compodoc="block-methods">
+    <h3>src/configuration/database-dev.config.ts</h3>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="bootstrap"></a>
+                    <a name="databaseDevConfig"></a>
                     <span class="name">
-                        <span ><b>bootstrap</b></span>
-                        <a href="#bootstrap"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>databaseDevConfig</b></span>
+                        <a href="#databaseDevConfig"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-            <tr>
-                <td class="col-md-4">
-<code>bootstrap()</code>
-                </td>
-            </tr>
-
-
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(configService:ConfigService) &#x3D;&gt; ({
+    type: &quot;postgres&quot;,
+    host: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_HOST&#x27;),
+    port: configService.getOrThrow&lt;number&gt;(&#x27;DATASOURCE_PORT&#x27;),
+    username: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_USERNAME&#x27;),
+    password: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_PASSWORD&#x27;),
+    database: configService.getOrThrow&lt;string&gt;(&#x27;DATASOURCE_DATABASE&#x27;),
+    synchronize: true,
+    logging: true,
+    entities: [],}
+)</code>
+                    </td>
+                </tr>
 
 
         </tbody>
     </table>
-</section>    <h3>src/configuration/env.validation.ts</h3>
-    <section data-compodoc="block-methods">
+</section>
+    <h3>src/configuration/swagger.const.ts</h3>
+    <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="envValidator"></a>
+                    <a name="licence"></a>
                     <span class="name">
-                        <span ><b>envValidator</b></span>
-                        <a href="#envValidator"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>licence</b></span>
+                        <a href="#licence"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-            <tr>
-                <td class="col-md-4">
-<code>envValidator(providedConfig: Record)</code>
-                </td>
-            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>process.env.MIT_LICENCE_URL</code>
+                    </td>
+                </tr>
 
 
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Validates the provided configuration object against the <code>EnvironmentVariables</code> class schema.
-Converts the provided configuration object to an instance of <code>EnvironmentVariables</code> using <code>plainToInstance</code>.
-Validates the converted instance using <code>validateSync</code> from class-validator.
-If any validation errors are found, throws an error with the number of invalid environment variables.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>providedConfig</td>
-                                            <td>
-                                                        <code>Record</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The configuration object to validate</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    <h3>src/common/decorators/validator.decotrator.ts</h3>
-    <section data-compodoc="block-methods">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="IsNotEmptyString"></a>
-                    <span class="name">
-                        <span ><b>IsNotEmptyString</b></span>
-                        <a href="#IsNotEmptyString"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>IsNotEmptyString(validationOption?: ValidationOptions)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>validationOption</td>
-                                            <td>
-                                                        <code>ValidationOptions</code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                </td>
-            </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="IsPositiveInteger"></a>
+                    <a name="swaggerServer"></a>
                     <span class="name">
-                        <span ><b>IsPositiveInteger</b></span>
-                        <a href="#IsPositiveInteger"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>swaggerServer</b></span>
+                        <a href="#swaggerServer"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>process.env.SWAGGER_SERVER</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
             <tr>
                 <td class="col-md-4">
-<code>IsPositiveInteger(validationOption?: ValidationOptions)</code>
+                    <a name="swaggerTitle"></a>
+                    <span class="name">
+                        <span ><b>swaggerTitle</b></span>
+                        <a href="#swaggerTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>process.env.SWAGGER_TITLE</code>
+                    </td>
+                </tr>
 
 
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>validationOption</td>
-                                            <td>
-                                                        <code>ValidationOptions</code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                </td>
-            </tr>
         </tbody>
     </table>
 </section>
+    <h3>src/main.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="module"></a>
+                    <span class="name">
+                        <span ><b>module</b></span>
+                        <a href="#module"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/configuration/swagger-config.document.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="swaggerConfig"></a>
+                    <span class="name">
+                        <span ><b>swaggerConfig</b></span>
+                        <a href="#swaggerConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new DocumentBuilder()
+  .setLicense(&quot;MIT&quot;,licence)
+  .addServer(swaggerServer)
+  .setTitle(swaggerTitle)
+  .setVersion(&quot;1.0&quot;)
+  .setDescription(&quot;API documentation for Task Management app&quot;)
+  .build()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/configuration/test-db.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TestDbConfig"></a>
+                    <span class="name">
+                        <span ><b>TestDbConfig</b></span>
+                        <a href="#TestDbConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TypeOrmModuleOptions</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  type: &quot;sqlite&quot;,
+  database: &quot;:memory:&quot;,
+  dropSchema: true,
+  entities: [&quot;dist/**/*.entity{.ts,.js}&quot;],
+  synchronize: true,
+  logging: false
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
 
 
                    </div><div class="search-results">
@@ -358,8 +352,8 @@ If any validation errors are found, throws an error with the number of invalid e
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-functions';
-            var COMPODOC_CURRENT_PAGE_URL = 'functions.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
