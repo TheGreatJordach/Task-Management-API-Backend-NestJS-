@@ -11,7 +11,6 @@ jobs:
   validate-env:
     name: Load and Validate Environment Variables
     runs-on: ubuntu-latest
-
     steps:
       - name: Check environment variables
         run: |
@@ -23,33 +22,16 @@ jobs:
           echo "APP_PORT=${{ secrets.APP_PORT }}"
           echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}"
           echo "SWAGGER_PATH=${{ secrets.SWAGGER_PATH }}"
-          # Add more checks as needed
-        env:
-          DATASOURCE_HOST: ${{ secrets.DATASOURCE_HOST }}
-          DATASOURCE_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
-          DATASOURCE_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
-          DATASOURCE_DATABASE: ${{ secrets.DATASOURCE_DATABASE }}
-          APP_PORT: ${{ secrets.APP_PORT }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          API_PREFIX: ${{ secrets.API_PREFIX }}
-          # Add Swagger Variables
-          MIT_LICENCE_URL: ${{ secrets.MIT_LICENCE_URL }}
-          SWAGGER_SERVER: ${{ secrets.SWAGGER_SERVER }}
-          SWAGGER_TITLE: ${{ secrets.SWAGGER_TITLE }}
-          SWAGGER_PATH: ${{ secrets.SWAGGER_PATH }}
-          # Add more environment variables here
 
   sonarcloud:
     name: SonarCloud Code Analysis
     runs-on: ubuntu-latest
     needs: validate-env
-    if: success() # Ensure the build is clean
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Full depth is recommended for accurate SonarCloud analysis
+          fetch-depth: 0
 
       - name: Install dependencies
         run: yarn install
@@ -64,10 +46,9 @@ jobs:
             -Dsonar.sources=src/
             -Dsonar.test.exclusions=**/*.spec.ts
             -Dsonar.tests=src/
-            -Dsonar.verbose=true
             -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   setup:
@@ -80,50 +61,29 @@ jobs:
         id: branch_name
         uses: tj-actions/branch-names@v8
 
-  check_branch_exists:
-    name: Check if Neon Branch Exists
+  deploy_to_neon:
+    name: Deploy to Neon Using Deployment Branch
     needs: setup
     runs-on: ubuntu-latest
-    outputs:
-      branch_exists: ${{ steps.check_branch.outputs.branch_exists }}
     steps:
-      - name: Check Neon Branch
-        id: check_branch
-        run: |
-          BRANCH_NAME="neon-deployment-${{ needs.setup.outputs.branch }}"
-          if neonctl branch list --project-id ${{ secrets.NEON_PROJECT_ID }} | grep -q $BRANCH_NAME; then
-            echo "Branch exists"
-            echo "::set-output name=branch_exists::true"
-          else
-            echo "Branch does not exist"
-            echo "::set-output name=branch_exists::false"
-          fi
-
-  create_neon_branch:
-    name: Create or Reuse Neon Branch for Deployment
-    needs: [ setup, check_branch_exists ]
-    if: needs.check_branch_exists.outputs.branch_exists == 'false'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Neon Branch
-        id: create_neon_branch
+      - name: Use Neon Deployment Branch
+        id: use_neon_branch
         uses: neondatabase/create-branch-action@v5
         with:
           project_id: ${{ secrets.NEON_PROJECT_ID }}
-          username: "neondb_owner"
-          parent: deployment
-          branch_name: neon-deployment/${{ needs.setup.outputs.branch }}
+          username: "Tasks_owner"
+          parent: main
+          branch_name: deployment
           api_key: ${{ secrets.NEON_API_KEY }}
 
-      - name: Run Migrations
+      - name: Run Deployment Tasks
         run: npm run db:migrate
         env:
-          DATABASE_URL: "${{ steps.create_neon_branch.outputs.db_url_with_pooler }}"
+          DATABASE_URL: "${{ secrets.DATABASE_URL }}"
 
   deploy_to_vercel:
     name: Deploy to Vercel
-    needs: create_neon_branch
-    if: success()
+    needs: deploy_to_neon
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Vercel
@@ -132,13 +92,12 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./ # Adjust based on your project structure
+          working-directory: ./ # Update as necessary
 
   build:
     name: Build Documentation
     runs-on: ubuntu-latest
     needs: deploy_to_vercel
-    if: success()
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -156,36 +115,14 @@ jobs:
           publish_dir: ./docs
 
   delete_neon_branch:
-    name: Delete Neon Branch
-    needs: [ setup, create_neon_branch ]
-    if: ${{ always() }} # Always run this job, regardless of previous job success
+    name: Delete Neon Deployment Branch
     runs-on: ubuntu-latest
+    needs: [deploy_to_neon, deploy_to_vercel, build] # Depends on previous jobs
+    if: always() # Run regardless of success or failure
     steps:
-      - name: Delete Neon Branch
-        if: needs.check_branch_exists.outputs.branch_exists == 'true'
-        uses: neondatabase/delete-branch-action@v3
-        with:
-          project_id: ${{ secrets.NEON_PROJECT_ID }}
-          branch: neon-deployment-${{ needs.setup.outputs.branch }}
-          api_key: ${{ secrets.NEON_API_KEY }}
-
-  recreate_neon_branch:
-    name: Recreate Neon Branch
-    needs: delete_neon_branch
-    if: failure() && needs.check_branch_exists.outputs.branch_exists == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Recreate Neon Branch
-        id: recreate_neon_branch
-        uses: neondatabase/create-branch-action@v5
-        with:
-          project_id: ${{ secrets.NEON_PROJECT_ID }}
-          username: "neondb_owner"
-          parent: deployment
-          branch_name: neon-deployment/${{ needs.setup.outputs.branch }}
-          api_key: ${{ secrets.NEON_API_KEY }}
-
-      - name: Run Migrations
-        run: npm run db:migrate
+      - name: Delete Neon Deployment Branch
+        run: |
+          neonctl branch delete deployment --project-id ${{ secrets.NEON_PROJECT_ID }}
         env:
-          DATABASE_URL: "${{ steps.recreate_neon_branch.outputs.db_url_with_pooler }}"
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
