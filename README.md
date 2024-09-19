@@ -5,8 +5,9 @@
 The **Task Management API** is a backend system built using [NestJS](https://nestjs.com/) that allows users to create, update, and manage tasks within projects. Users can be assigned different roles such as Admin, Project Manager, or Team Member, each with different permissions. The API also supports real-time task updates using WebSockets and email notifications for task assignment and status changes.
 
 [![codecov](https://codecov.io/gh/TheGreatJordach/Task-Management-API-Backend-NestJS-/branch/dev/graph/badge.svg?token=aixWyMJyId)](https://codecov.io/gh/TheGreatJordach/Task-Management-API-Backend-NestJS-)
-[![Dev CI Pipeline](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-ci.yml/badge.svg)](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-ci.yml)
-[![Neon and Vercel Deployment Workflow](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/neon_workflow.yml/badge.svg)](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/neon_workflow.yml)
+[![Dev CI Pipeline](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-branch-pipeline.yml/badge.svg)](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/dev-branch-pipeline.yml)
+[![Main Deployment Pipeline](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/main-branch-pipeline.yml/badge.svg)](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/main-branch-pipeline.yml)
+[![pages-build-deployment](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/TheGreatJordach/Task-Management-API-Backend-NestJS-/actions/workflows/pages/pages-build-deployment)
 ## Features
 
 - **User Authentication**: Register, login, and manage user sessions using JWT-based authentication.
