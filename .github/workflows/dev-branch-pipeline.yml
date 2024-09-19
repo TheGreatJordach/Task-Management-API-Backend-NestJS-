@@ -68,7 +68,7 @@ jobs:
           run: yarn run test:e2e
 
   coverage:
-    name: Run Unit Tests and Collect Coverage
+    name: Unit Tests & Coverage
     runs-on: ubuntu-latest
     needs: build
     if: success() # Ensure this job only runs if 'validate-env' is successful
